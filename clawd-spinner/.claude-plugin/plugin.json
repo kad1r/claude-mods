@@ -1,1 +1,17 @@
-{ "name": "clawd-spinner", "version": "0.1.0", "description": "Pixel-art Clawd acts out the spinner word above the prompt while Claude works" }
+{
+  "name": "clawd-spinner",
+  "version": "0.1.0",
+  "description": "Pixel-art Clawd plays one of 17 random scenes in a tiny band under the spinner while Claude works",
+  "userConfig": {
+    "size": {
+      "type": "string",
+      "title": "Band size",
+      "description": "small: 16 x 1 cells (block octants, needs a font with Unicode 16 octants). large: 32 x 2 cells (half blocks, works everywhere).",
+      "default": "small",
+      "options": [
+        "small",
+        "large"
+      ]
+    }
+  }
+}

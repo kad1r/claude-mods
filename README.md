@@ -4,7 +4,15 @@
 
 Small, focused mods for [Claude Code](https://claude.com/claude-code), built on its function-hook plugin API. Each folder is one plugin; the repo root is a plugin marketplace, so you install only the mods you want.
 
-![Clawd acting out the spinner word above the prompt](docs/clawd.svg)
+![Clawd's 17 scenes in the default small band](docs/clawd.svg)
+
+## What's new
+
+- **clawd-spinner, rewritten.** 17 scenes, one picked at random for every command and never the same twice in a row (10 new: rain, fishing, music, laptop, ball, rocket, plant, bug, blocks, sleep). The default band is now 16×1 cells, drawn with Unicode 16 block octants (2×4 pixels per cell), a quarter of the old size. `size: large` in `/config` brings back the 32×2 half-block band ([preview](docs/clawd-large.svg)). The large band animates with `$.ui.blit`, so the rest of the band is not redrawn every frame.
+- **clear-reminder** is a status line now, styled like usage-meter.
+- **usage-meter** writes percents as `%34`; `34% 336k` came out garbled in the status line.
+- **git-band** runs `git status` with `core.fsmonitor` off, so a cloned repo's config cannot start a program every 15 s.
+- New mods: `todo-pane`, `agents-pane`, `git-band`, `time-tracker`, `session-journal`.
 
 ## What's inside
 
@@ -35,7 +43,7 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 
 | Mod | What it does |
 | --- | --- |
-| [`clawd-spinner`](clawd-spinner) | Pixel-art Clawd acts out the spinner word (beaming, cooking, pondering, forging, planning, wiggling) in a two-row band, with a time-of-day backdrop: morning coffee, a night sky, Friday-evening confetti. |
+| [`clawd-spinner`](clawd-spinner) | A tiny 16×1 band under the spinner (block octants; set `size` to `large` in `/config` for a 32×2 half-block band if your font lacks octants) where pixel-art Clawd plays one of 17 scenes, picked at random for every command (UFO, cooking, fishing, rain, music, laptop, rocket, growing plant, falling blocks, sleeping…). Time-of-day backdrop: morning coffee, a night sky, Friday-evening confetti. |
 | [`done-sound`](done-sound) | Plays a sound when Claude finishes answering (Windows, through PowerShell's MediaPlayer). |
 
 ## Install
@@ -78,7 +86,15 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 
 [Claude Code](https://claude.com/claude-code) için küçük, tek işe odaklı mod'lar. Hepsi Claude Code'un function-hook plugin API'si ile yazıldı. Her klasör bir plugin; repo kökü bir plugin marketplace'i, yani sadece istediğin mod'ları kurarsın.
 
-![Clawd, prompt'un üstünde spinner kelimesini canlandırıyor](docs/clawd.svg)
+![Varsayılan küçük bantta Clawd'ın 17 sahnesi](docs/clawd.svg)
+
+## Yenilikler
+
+- **clawd-spinner baştan yazıldı.** 17 sahne var; her komutta biri rastgele seçiliyor ve aynısı art arda gelmiyor (10 yeni: yağmur, balık tutma, müzik, laptop, top, roket, bitki, böcek, bloklar, uyku). Varsayılan bant artık 16×1 hücre, Unicode 16 blok octant karakterleriyle çiziliyor (hücre başına 2×4 piksel), eskisinin dörtte biri. `/config` içinde `size: large` seçilirse 32×2'lik yarım-blok bant geri gelir ([önizleme](docs/clawd-large.svg)). Büyük bant `$.ui.blit` ile oynuyor, yani her karede bandın geri kalanı yeniden çizilmiyor.
+- **clear-reminder** artık usage-meter gibi bir durum satırı.
+- **usage-meter** yüzdeyi `%34` biçiminde yazıyor; `34% 336k` durum satırında bozuk görünüyordu.
+- **git-band** `git status`'u `core.fsmonitor` kapalı çalıştırıyor; klonlanan bir reponun ayarı 15 saniyede bir program başlatamaz.
+- Yeni mod'lar: `todo-pane`, `agents-pane`, `git-band`, `time-tracker`, `session-journal`.
 
 ## Neler var
 
@@ -109,7 +125,7 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 
 | Mod | Ne yapar |
 | --- | --- |
-| [`clawd-spinner`](clawd-spinner) | Piksel Clawd, spinner kelimesini (beaming, cooking, pondering, forging, planning, wiggling) iki satırlık bir bantta canlandırır. Arka plan saate göre değişir: sabah kahve, gece gökyüzü, cuma akşamı konfeti. |
+| [`clawd-spinner`](clawd-spinner) | Spinner'ın altında 16×1'lik minik bir bant (blok octant karakterleri; fontun bunları çizmiyorsa `/config`'ten `size` ayarını `large` yap, 32×2 yarım-blok bant gelir): piksel Clawd her komutta rastgele seçilen 17 sahneden birini oynar (UFO, yemek, balık tutma, yağmur, müzik, laptop, roket, büyüyen çiçek, düşen bloklar, uyku…). Arka plan saate göre değişir: sabah kahve, gece gökyüzü, cuma akşamı konfeti. |
 | [`done-sound`](done-sound) | Claude cevabı bitirince ses çalar (Windows, PowerShell MediaPlayer ile). |
 
 ## Kurulum
