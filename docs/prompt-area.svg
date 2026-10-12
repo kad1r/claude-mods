@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="961" height="280" viewBox="0 0 961 280">
+<rect width="100%" height="100%" rx="10" fill="#0d1117"/>
+<text x="20" y="26" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="13" fill="#6e7681">git-band · usage-meter · clear-reminder · prompt-score</text>
+<text x="20" y="56" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="15" fill="#6e7681" xml:space="preserve">* Running the integration tests… (41s)</text>
+<text x="20" y="96" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="15" fill="#d29922" xml:space="preserve">⎇ feature/organization-tree · ● 3 değişiklik · ↑2 ↓0</text>
+<line x1="20" x2="941" y1="110" y2="110" stroke="#30363d"/>
+<text x="20" y="136" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="15" fill="#c9d1d9" xml:space="preserve">&gt; </text>
+<line x1="20" x2="941" y1="150" y2="150" stroke="#30363d"/>
+<text x="20" y="176" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="15" fill="#e3b341" xml:space="preserve">🟢 ctx ▰▰▰▱▱▱▱▱▱▱ %34 336k/1.0M · son turn 41s 58k tok · $4.21 · 5s limit %23</text>
+<text x="20" y="196" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="15" fill="#e3b341" xml:space="preserve">🟡 mesaj ▰▰▰▰▰▰▰▰▰▱ 18/20 · 2 mesaj sonra /clear</text>
+<rect x="20" y="230" width="921" height="46" rx="8" fill="#161b22" stroke="#30363d"/>
+<text x="34" y="249" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="12" fill="#6e7681">toast · prompt-score</text>
+<text x="34" y="268" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">Prompt 89/100 · 🟢 İyi (N25 B25 K21 D18)</text>
+</svg>

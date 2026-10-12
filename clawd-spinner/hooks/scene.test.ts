@@ -12,11 +12,11 @@ test('spinner words pick themed scenes', () => {
   expect(pickScene('Xyzzy')).toBe('walk')
 })
 
-test('the band is 3 rows tall and 75% of the terminal wide, up to the Raster limit', () => {
-  expect(ROWS).toBe(3)
-  expect(columnsFor(80)).toBe(60)
-  expect(columnsFor(240)).toBe(180)
-  expect(columnsFor(900)).toBe(512)
+test('the band is 2 rows tall and half the terminal wide, up to the Raster limit', () => {
+  expect(ROWS).toBe(2)
+  expect(columnsFor(80)).toBe(40)
+  expect(columnsFor(240)).toBe(120)
+  expect(columnsFor(2000)).toBe(512)
 })
 
 test('every scene renders valid cells at narrow and wide widths', () => {

@@ -1,15 +1,15 @@
 // Pixel scenes drawn into a width x H canvas, encoded as Raster cells (two pixels per cell).
-// The width is SCALE of the terminal's; each scene's props sit in a SCENE_W wide block centered in it.
+// The band is SCALE of the terminal's width; each scene's props sit in a SCENE_W wide block
+// centered in it. The canvas is exactly Clawd's height: no sky, no ground line, so the band
+// is two rows tall while Clawd keeps his full 7 x 4 pixel shape.
 
-export const SCALE = 0.75
-export const H = 6
+export const H = 4
 export const ROWS = Math.ceil(H / 2)
-export const SCENE_W = 25
+export const SCALE = 0.5
+export const SCENE_W = 20
 export const MAX_COLUMNS = 512
-const GROUND_Y = H - 1
 const NONE = -1
 const DEFAULT_COLOR = 0x01000000
-const GROUND_COLOR = 0x3a3a4a
 
 const PALETTE: Record<string, number> = {
   O: 0xd97757, // Clawd orange
@@ -63,13 +63,11 @@ const sprite = (c: Canvas, x: number, y: number, rows: readonly string[]) => {
 const dot = (c: Canvas, x: number, y: number, key: string) => sprite(c, x, y, [key])
 
 const CLAWD_W = 7
-const CLAWD_H = 3
-const STAND_Y = GROUND_Y - CLAWD_H
 
-const clawd = (c: Canvas, x: number, y: number, t: number, isWalking: boolean) => {
+const clawd = (c: Canvas, x: number, t: number, isWalking: boolean) => {
   const isBlinking = t % 24 === 0
   const legs = isWalking && t % 2 === 1 ? 'O O O O' : ' O O O '
-  sprite(c, x, y, [isBlinking ? ' ODODO ' : ' OKOKO ', 'OOOOOOO', legs])
+  sprite(c, x, 0, [' OOOOO ', isBlinking ? ' ODODO ' : ' OKOKO ', 'OOOOOOO', legs])
 }
 
 const pingpong = (t: number, span: number) => {
@@ -78,66 +76,54 @@ const pingpong = (t: number, span: number) => {
   return p < span ? p : span * 2 - p
 }
 
-// `o` is the left edge of the centered SCENE_W block.
+// `o` is the left edge of the centered SCENE_W block; props stand beside Clawd, at most H tall.
 const draw: Record<Scene, (c: Canvas, t: number, o: number) => void> = {
-  walk: (c, t) => clawd(c, 1 + pingpong(t, c.width - CLAWD_W - 2), STAND_Y, t, true),
+  walk: (c, t) => clawd(c, 1 + pingpong(t, c.width - CLAWD_W - 2), t, true),
 
   jump: (c, t, o) => {
-    const lift = [0, 1, 2, 2, 1, 0][t % 6] ?? 0
-    clawd(c, o + 9, STAND_Y - lift, t, false)
+    clawd(c, o + 6, t, true)
+    const isUp = t % 4 < 2
+    dot(c, o + 3, isUp ? 0 : 2, 'Y')
+    dot(c, o + 15, isUp ? 2 : 0, 'Y')
   },
 
   ufo: (c, t, o) => {
-    const phase = t % 32
-    const lift = phase < 14 ? 0 : 1
-    if (phase >= 4 && phase < 26) {
-      for (let y = 2; y < GROUND_Y; y++) {
-        for (let x = o + 10; x < o + 16; x++) {
-          if ((x + y + t) % 3 !== 0) dot(c, x, y, 'C')
-        }
-      }
-    }
-    if (phase < 26) clawd(c, o + 10, STAND_Y - lift, t, false)
-    sprite(c, o + 9, 0, ['  GGGG  ', t % 2 === 0 ? 'GYGGYGGY' : 'GGYGGYGG'])
+    clawd(c, o + 2, t, false)
+    const x = o + 11 + pingpong(t, 3)
+    sprite(c, x, 0, ['GGGGGG', t % 2 === 0 ? 'GYGGYG' : 'GGYGGY'])
+    if (t % 4 < 2) sprite(c, x + 2, 2, ['CC', 'CC'])
   },
 
   cook: (c, t, o) => {
-    clawd(c, o + 4, STAND_Y, t, false)
-    sprite(c, o + 13, GROUND_Y - 3, ['S SSS S', 'SSSSSSS', ' SSSSS '])
-    for (let k = 0; k < 3; k++) {
-      const rise = (t + k * 2) % 2
-      dot(c, o + 14 + k * 2 + rise, GROUND_Y - 4 - rise, 'W')
-    }
+    clawd(c, o + 2, t, false)
+    sprite(c, o + 11, 1, ['S SSS S', 'SSSSSSS', ' SSSSS '])
+    for (let k = 0; k < 3; k++) dot(c, o + 12 + k * 2 + ((t + k) % 2), 0, 'W')
   },
 
   think: (c, t, o) => {
-    clawd(c, o + 6, STAND_Y, t, false)
-    const step = t % 18
-    if (step >= 3) dot(c, o + 14, STAND_Y, 'W')
-    if (step >= 6) dot(c, o + 15, 1, 'W')
-    if (step >= 9) {
-      sprite(c, o + 17, 0, [' WWWWW ', 'WWKKKWW', ' WWWWW '])
-    }
+    clawd(c, o + 2, t, false)
+    const step = t % 12
+    if (step >= 3) dot(c, o + 10, 2, 'W')
+    if (step >= 6) dot(c, o + 11, 1, 'W')
+    if (step >= 9) sprite(c, o + 12, 0, [' WWWWW ', 'WWKKWWW', ' WWWWW '])
   },
 
   build: (c, t, o) => {
-    clawd(c, o + 6, STAND_Y, t, false)
-    sprite(c, o + 14, GROUND_Y - 2, ['SSSSSS', ' SSSS '])
-    const isDown = t % 4 >= 2
-    if (isDown) {
-      sprite(c, o + 13, GROUND_Y - 4, ['BBBSS', '   SS'])
-      dot(c, o + 18 + (t % 2), GROUND_Y - 3, 'Y')
-      dot(c, o + 20, GROUND_Y - 4 + (t % 2), 'Y')
+    clawd(c, o + 2, t, false)
+    sprite(c, o + 11, 2, ['SSSSSS', ' SSSS '])
+    if (t % 4 >= 2) {
+      sprite(c, o + 10, 1, ['BBBSS'])
+      dot(c, o + 16 + (t % 2), 0, 'Y')
     } else {
-      sprite(c, o + 13, 0, ['SS', 'B ', 'B '])
+      sprite(c, o + 10, 0, ['SS', 'B '])
     }
   },
 
   board: (c, t, o) => {
-    clawd(c, o + 5, STAND_Y, t, false)
+    clawd(c, o + 2, t, false)
     const lit = Math.floor(t / 6) % 3
     const item = (i: number) => 'BP' + (i === lit ? 'Y' : 'L') + 'LLLLB'
-    sprite(c, o + 13, 0, ['BBBBBBBB', item(0), item(1), item(2), ' B    B '])
+    sprite(c, o + 11, 0, [item(0), item(1), item(2), 'BBBBBBBB'])
   },
 }
 
@@ -166,22 +152,19 @@ const backdrop: Record<Mood, (c: Canvas, t: number) => void> = {
   none: () => {},
 
   morning: (c, t) => {
-    const x = c.width - 6
-    sprite(c, x, GROUND_Y - 3, ['WWW ', 'WFWW', 'WWW '])
-    for (let k = 0; k < 2; k++) {
-      const rise = (t + k * 3) % 2
-      dot(c, x + k + rise, GROUND_Y - 4 - rise, 'L')
-    }
-    if (c.width > 12) sprite(c, 1, 0, [' Y ', 'YYY', ' Y '])
+    const x = c.width - 5
+    sprite(c, x, 1, ['WWW ', 'WFWW', 'WWW '])
+    dot(c, x + (t % 2), 0, 'L')
+    if (c.width > 12) sprite(c, 0, 0, [' Y ', 'YYY', ' Y '])
   },
 
   night: (c, t) => {
-    if (c.width > 8) sprite(c, c.width - 5, 0, [' MM', 'M  ', ' MM'])
-    for (let x = 0; x < c.width - 6; x++) {
+    if (c.width > 6) sprite(c, c.width - 4, 0, [' MM', 'M  ', ' MM'])
+    for (let x = 0; x < c.width - 5; x++) {
       const v = hash(x)
       if (v % 7 !== 0) continue
       const isLit = (Math.floor(t / 4) + v) % 5 !== 0
-      if (isLit) dot(c, x, v % (GROUND_Y - 2), v % 3 === 0 ? 'Y' : 'W')
+      if (isLit) dot(c, x, v % H, v % 3 === 0 ? 'Y' : 'W')
     }
   },
 
@@ -189,21 +172,19 @@ const backdrop: Record<Mood, (c: Canvas, t: number) => void> = {
     for (let x = 0; x < c.width; x++) {
       const v = hash(x)
       if (v % 4 !== 0) continue
-      const y = (Math.floor(t / (1 + (v % 2))) + v) % GROUND_Y
+      const y = (Math.floor(t / (1 + (v % 2))) + v) % H
       dot(c, x, y, CONFETTI[v % CONFETTI.length] ?? 'Y')
     }
   },
 }
 
-export const columnsFor = (available: number): number => Math.max(1, Math.min(MAX_COLUMNS, Math.round(available * SCALE)))
+export const columnsFor = (available: number): number =>
+  Math.max(1, Math.min(MAX_COLUMNS, Math.round(available * SCALE)))
 
 export const frame = (scene: Scene, t: number, width: number, mood: Mood = 'none'): Canvas => {
   const c: Canvas = { width, px: new Int32Array(width * H).fill(NONE) }
   backdrop[mood](c, t)
   draw[scene](c, t, Math.floor((width - SCENE_W) / 2))
-  for (let x = 0; x < width; x++) {
-    if (c.px[GROUND_Y * width + x] === NONE) c.px[GROUND_Y * width + x] = GROUND_COLOR
-  }
   return c
 }
 

@@ -1,0 +1,1 @@
+{ "name": "session-journal", "version": "0.1.0", "description": "Logs each turn to a daily markdown journal; /gunluk adds a model-written summary of the session" }

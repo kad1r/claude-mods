@@ -33,6 +33,31 @@
       "name": "prompt-score",
       "source": "./prompt-score",
       "description": "Toasts a heuristic quality score (PromptTelemetry rules) for each prompt you send"
+    },
+    {
+      "name": "todo-pane",
+      "source": "./todo-pane",
+      "description": "Live pane of Claude's todo list (TodoWrite / Task tools) with a progress bar"
+    },
+    {
+      "name": "agents-pane",
+      "source": "./agents-pane",
+      "description": "Live pane of running subagents with elapsed time and a stop button"
+    },
+    {
+      "name": "git-band",
+      "source": "./git-band",
+      "description": "Branch, changed-file count and ahead/behind above the prompt"
+    },
+    {
+      "name": "time-tracker",
+      "source": "./time-tracker",
+      "description": "Tracks how long Claude works per project per day; /zaman shows the last 7 days"
+    },
+    {
+      "name": "session-journal",
+      "source": "./session-journal",
+      "description": "Logs each turn to a daily markdown journal; /gunluk adds a model-written summary of the session"
     }
   ]
 }

@@ -1,0 +1,1 @@
+{ "name": "agents-pane", "version": "0.1.0", "description": "Live pane of running subagents with elapsed time and a stop button", "types": "./types/index.d.ts" }

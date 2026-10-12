@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="454" viewBox="0 0 1300 454">
+<rect width="100%" height="100%" rx="10" fill="#0d1117"/>
+<text x="20" y="32" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="13" fill="#6e7681">Panes · contents produced by the mods’ own functions</text>
+<rect x="20" y="50" width="620" height="172" rx="8" fill="#0b0f14" stroke="#30363d"/>
+<text x="34" y="75" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" font-weight="bold">Yapılacaklar · todo-pane</text>
+<text x="34" y="102" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#3fb950" xml:space="preserve">▰▰▰▰▰▱▱▱▱▱▱▱ 2/5</text>
+<text x="34" y="122" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">✔ Read the report service</text>
+<text x="34" y="142" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">✔ Add a covering index</text>
+<text x="34" y="162" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#e3b341" xml:space="preserve">◐ Rewriting GetTimeline query</text>
+<text x="34" y="182" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">○ Run the integration tests</text>
+<text x="34" y="202" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">○ Update DEPLOYMENT.md</text>
+<rect x="660" y="50" width="620" height="112" rx="8" fill="#0b0f14" stroke="#30363d"/>
+<text x="674" y="75" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" font-weight="bold">Subagent’lar · agents-pane</text>
+<text x="674" y="102" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#e3b341" xml:space="preserve">●  1m23s code-reviewer: Review the index migration   [ Durdur ]</text>
+<text x="674" y="122" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#e3b341" xml:space="preserve">●    45s general-purpose: Check EF Core migration SQL   [ Durdur ]</text>
+<text x="674" y="142" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">✔    38s Explore: Find report endpoints</text>
+<rect x="20" y="242" width="620" height="132" rx="8" fill="#0b0f14" stroke="#30363d"/>
+<text x="34" y="267" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" font-weight="bold">Oturum değişiklikleri · session-diff</text>
+<text x="34" y="294" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">3 dosya · +8 −2</text>
+<text x="34" y="314" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">   +1    −1  README.md</text>
+<text x="34" y="334" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">   +4    −0  src/Data/Migrations/AddTimelineIndex.cs  (yeni)</text>
+<text x="34" y="354" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" xml:space="preserve">   +3    −1  src/Reports/TimelineService.cs</text>
+<rect x="660" y="242" width="620" height="192" rx="8" fill="#0b0f14" stroke="#30363d"/>
+<text x="674" y="267" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#c9d1d9" font-weight="bold">session-diff → TimelineService.cs</text>
+<text x="674" y="294" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">--- a/src/Reports/TimelineService.cs</text>
+<text x="674" y="314" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#6e7681" xml:space="preserve">+++ b/src/Reports/TimelineService.cs</text>
+<text x="674" y="334" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#58a6ff" xml:space="preserve">@@ -1,1 +1,3 @@</text>
+<text x="674" y="354" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#f85149" xml:space="preserve">-var rows = db.Events.ToList();</text>
+<text x="674" y="374" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#3fb950" xml:space="preserve">+var rows = await db.Events</text>
+<text x="674" y="394" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#3fb950" xml:space="preserve">+    .AsNoTracking()</text>
+<text x="674" y="414" font-family="'Cascadia Mono','Cascadia Code',Consolas,'DejaVu Sans Mono',monospace" font-size="14" fill="#3fb950" xml:space="preserve">+    .ToListAsync(ct);</text>
+</svg>

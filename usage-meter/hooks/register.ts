@@ -38,7 +38,7 @@ export const line = (m: Meter): string => {
   if (m.percent === undefined || m.tokens === undefined) {
     parts.push(`ctx —/${compact(m.window)}`)
   } else {
-    parts.push(`${dot(m.percent)} ctx ${bar(m.percent)} ${m.percent}% ${compact(m.tokens)}/${compact(m.window)}`)
+    parts.push(`${dot(m.percent)} ctx ${bar(m.percent)} %${m.percent} ${compact(m.tokens)}/${compact(m.window)}`)
   }
   if (m.turnSeconds !== undefined) {
     const tokens = m.turnTokens === undefined ? '' : ` ${compact(m.turnTokens)} tok`

@@ -55,7 +55,7 @@ export const register: Register = on => {
     }
 
     const { Box, Raster } = $.ui.resolve(e)
-    // Full width: the band's own column count, so it follows terminal resizes.
+    // Half the band's own column count, so it follows terminal resizes.
     const columns = columnsFor(e.props.bodyColumns)
 
     return (

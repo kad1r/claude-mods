@@ -1,0 +1,1 @@
+{ "name": "todo-pane", "version": "0.1.0", "description": "Live pane of Claude's todo list (TodoWrite / Task tools) with a progress bar", "types": "./types/index.d.ts" }
