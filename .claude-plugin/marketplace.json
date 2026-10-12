@@ -1,0 +1,38 @@
+{
+  "name": "local-mods",
+  "owner": {
+    "name": "kadir.avci"
+  },
+  "plugins": [
+    {
+      "name": "clear-reminder",
+      "source": "./clear-reminder",
+      "description": "Counts prompts since the last /clear and reminds you to clear before the limit"
+    },
+    {
+      "name": "clawd-spinner",
+      "source": "./clawd-spinner",
+      "description": "Pixel-art Clawd acts out the spinner word above the prompt while Claude works"
+    },
+    {
+      "name": "done-sound",
+      "source": "./done-sound",
+      "description": "Plays a sound when Claude finishes answering"
+    },
+    {
+      "name": "usage-meter",
+      "source": "./usage-meter",
+      "description": "Status line with context fill, turn time, turn tokens, session cost and the 5-hour limit"
+    },
+    {
+      "name": "session-diff",
+      "source": "./session-diff",
+      "description": "Pane listing the files changed this session with line counts and their diffs"
+    },
+    {
+      "name": "prompt-score",
+      "source": "./prompt-score",
+      "description": "Toasts a heuristic quality score (PromptTelemetry rules) for each prompt you send"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{ "name": "prompt-score", "version": "0.1.0", "description": "Toasts a heuristic quality score (PromptTelemetry rules) for each prompt you send" }

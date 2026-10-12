@@ -1,0 +1,7 @@
+# Types the engine writes beside each mod at load time
+*/.claude-plugin/types/
+*/tsconfig.json
+node_modules/
+
+# Bring your own sound
+done-sound/sounds/*.mp3

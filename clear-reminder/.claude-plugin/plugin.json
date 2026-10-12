@@ -1,0 +1,1 @@
+{ "name": "clear-reminder", "version": "0.1.0", "description": "Counts prompts since the last /clear and reminds you to clear before the limit", "types": "./types/index.d.ts" }
