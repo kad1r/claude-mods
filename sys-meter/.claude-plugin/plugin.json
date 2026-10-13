@@ -1,0 +1,1 @@
+{ "name": "sys-meter", "version": "0.1.0", "description": "Status line with CPU load, RAM usage and CPU temperature, refreshed every 5 seconds (Windows)" }

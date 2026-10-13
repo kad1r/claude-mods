@@ -8,6 +8,7 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 
 ## What's new
 
+- **sys-meter**, a new status line: CPU, RAM and temperature every 5 s.
 - **clawd-spinner, rewritten.** 17 scenes, one picked at random for every command and never the same twice in a row (10 new: rain, fishing, music, laptop, ball, rocket, plant, bug, blocks, sleep). The default band is now 16×1 cells, drawn with Unicode 16 block octants (2×4 pixels per cell), a quarter of the old size. `size: large` in `/config` brings back the 32×2 half-block band ([preview](docs/clawd-large.svg)). The large band animates with `$.ui.blit`, so the rest of the band is not redrawn every frame.
 - **clear-reminder** is a status line now, styled like usage-meter.
 - **usage-meter** writes percents as `%34`; `34% 336k` came out garbled in the status line.
@@ -22,6 +23,7 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 | --- | --- |
 | [`usage-meter`](usage-meter) | Status line: context fill bar with tokens/window, a live turn timer, the last turn's tokens, session cost and 5-hour rate-limit usage. |
 | [`clear-reminder`](clear-reminder) | Status line counting prompts since the last `/clear` (`🟢 mesaj ▰▰▱ 7/20`); turns yellow at 17 and red at 20, with a toast. |
+| [`sys-meter`](sys-meter) | Status line with CPU load, RAM usage and temperature (`🟢 cpu ▰▱▱ %14 · ram ▰▰▰ %78 24.6/31.6G · 🌡 69°C`), refreshed every 5 s. Windows only; the temperature is the ACPI thermal zone, readable without admin rights, not the CPU package sensor. |
 | [`git-band`](git-band) | One line above the prompt: branch, changed-file count, ahead/behind. Refreshes every 15 s and after each turn. |
 | [`todo-pane`](todo-pane) | Live pane of Claude's todo list (TodoWrite or TaskCreate/TaskUpdate) with a progress bar. Opens by itself; `/todos` reopens it. |
 | [`agents-pane`](agents-pane) | Live pane of subagents with status, elapsed time and a **Stop** button for each running one. `/subagents` reopens it. |
@@ -90,6 +92,7 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 
 ## Yenilikler
 
+- **sys-meter**, yeni durum satırı: 5 saniyede bir CPU, RAM ve sıcaklık.
 - **clawd-spinner baştan yazıldı.** 17 sahne var; her komutta biri rastgele seçiliyor ve aynısı art arda gelmiyor (10 yeni: yağmur, balık tutma, müzik, laptop, top, roket, bitki, böcek, bloklar, uyku). Varsayılan bant artık 16×1 hücre, Unicode 16 blok octant karakterleriyle çiziliyor (hücre başına 2×4 piksel), eskisinin dörtte biri. `/config` içinde `size: large` seçilirse 32×2'lik yarım-blok bant geri gelir ([önizleme](docs/clawd-large.svg)). Büyük bant `$.ui.blit` ile oynuyor, yani her karede bandın geri kalanı yeniden çizilmiyor.
 - **clear-reminder** artık usage-meter gibi bir durum satırı.
 - **usage-meter** yüzdeyi `%34` biçiminde yazıyor; `34% 336k` durum satırında bozuk görünüyordu.
@@ -104,6 +107,7 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 | --- | --- |
 | [`usage-meter`](usage-meter) | Durum satırı: context doluluk çubuğu ve token/pencere, canlı turn sayacı, son turn'ün token'ı, oturum maliyeti, 5 saatlik limit kullanımı. |
 | [`clear-reminder`](clear-reminder) | Son `/clear`'dan beri yazdığın mesajları sayan durum satırı (`🟢 mesaj ▰▰▱ 7/20`); 17'de sarı, 20'de kırmızı olur ve toast gösterir. |
+| [`sys-meter`](sys-meter) | CPU yükü, RAM kullanımı ve sıcaklığı gösteren durum satırı (`🟢 cpu ▰▱▱ %14 · ram ▰▰▰ %78 24.6/31.6G · 🌡 69°C`), 5 saniyede bir yenilenir. Sadece Windows; sıcaklık admin yetkisi gerektirmeyen ACPI thermal zone değeridir, CPU paket sensörü değil. |
 | [`git-band`](git-band) | Prompt'un üstünde tek satır: branch, değişen dosya sayısı, ahead/behind. 15 saniyede bir ve her turn sonunda yenilenir. |
 | [`todo-pane`](todo-pane) | Claude'un yapılacaklar listesini (TodoWrite veya TaskCreate/TaskUpdate) ilerleme çubuğuyla gösteren canlı panel. Kendiliğinden açılır; `/todos` tekrar açar. |
 | [`agents-pane`](agents-pane) | Subagent'ları durum ve süreyle gösteren canlı panel; çalışan her birinin yanında **Durdur** butonu. `/subagents` tekrar açar. |
