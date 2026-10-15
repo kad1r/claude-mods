@@ -8,6 +8,7 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 
 ## What's new
 
+- **ask-alert**, new: a Windows notification and a sound when Claude waits for you (a permission prompt, `AskUserQuestion`, an idle prompt).
 - **sys-meter**, a new status line: CPU, RAM and temperature every 5 s.
 - **clawd-spinner, rewritten.** 17 scenes, one picked at random for every command and never the same twice in a row (10 new: rain, fishing, music, laptop, ball, rocket, plant, bug, blocks, sleep). The default band is now 16×1 cells, drawn with Unicode 16 block octants (2×4 pixels per cell), a quarter of the old size. `size: large` in `/config` brings back the 32×2 half-block band ([preview](docs/clawd-large.svg)). The large band animates with `$.ui.blit`, so the rest of the band is not redrawn every frame.
 - **clear-reminder** is a status line now, styled like usage-meter.
@@ -46,7 +47,15 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 | Mod | What it does |
 | --- | --- |
 | [`clawd-spinner`](clawd-spinner) | A tiny 16×1 band under the spinner (block octants; set `size` to `large` in `/config` for a 32×2 half-block band if your font lacks octants) where pixel-art Clawd plays one of 17 scenes, picked at random for every command (UFO, cooking, fishing, rain, music, laptop, rocket, growing plant, falling blocks, sleeping…). Time-of-day backdrop: morning coffee, a night sky, Friday-evening confetti. |
+
+### Notifications
+
+| Mod | What it does |
+| --- | --- |
+| [`ask-alert`](ask-alert) | When Claude waits for you (a permission prompt from an `ask` rule, an `AskUserQuestion`, an idle prompt, an MCP input request) it raises a Windows notification, a toast in the terminal and plays `Windows Notify System Generic.wav`. `mode` in `/plugin configure`: `both` (default), `toast` or `sound`. Windows only. |
 | [`done-sound`](done-sound) | Plays a sound when Claude finishes answering (Windows, through PowerShell's MediaPlayer). |
+
+![ask-alert: terminal toast and Windows notification](docs/ask-alert.svg)
 
 ## Install
 
@@ -62,10 +71,11 @@ Answer `y` to add the marketplace, then pick a scope. Repeat with any mod name f
 
 ## Notes
 
-- Function hooks are an early-access API of Claude Code and may change between releases. These mods were written and tested on Claude Code 2.1.296.
+- Function hooks are an early-access API of Claude Code and may change between releases. These mods were written and tested on Claude Code 2.1.296; `ask-alert` on 2.1.300.
 - `session-journal` writes the first line of your prompts to disk in plain text. Keep that in mind if you paste secrets into prompts.
 - `/gunluk` makes one Haiku request each time you run it.
-- The images above are drawn from the mods' own output (Clawd's frames from `scene.ts`, the status-line and pane text from each mod's functions), not cropped from a live session.
+- `ask-alert` does not fire in `bypassPermissions` mode for permission prompts, since none are shown. Where an organization manages Claude Code, its `Notification` hook runs only if the organization lists the plugin; the `AskUserQuestion` alert still works.
+- The images above are drawn from the mods' own output (Clawd's frames from `scene.ts`, the status-line and pane text from each mod's functions), not cropped from a live session. The Windows notification in `ask-alert.svg` is drawn to look like the real one.
 
 ## Develop
 
@@ -92,6 +102,7 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 
 ## Yenilikler
 
+- **ask-alert**, yeni: Claude seni beklediğinde (izin isteği, `AskUserQuestion`, boşta kalan prompt) Windows bildirimi ve ses.
 - **sys-meter**, yeni durum satırı: 5 saniyede bir CPU, RAM ve sıcaklık.
 - **clawd-spinner baştan yazıldı.** 17 sahne var; her komutta biri rastgele seçiliyor ve aynısı art arda gelmiyor (10 yeni: yağmur, balık tutma, müzik, laptop, top, roket, bitki, böcek, bloklar, uyku). Varsayılan bant artık 16×1 hücre, Unicode 16 blok octant karakterleriyle çiziliyor (hücre başına 2×4 piksel), eskisinin dörtte biri. `/config` içinde `size: large` seçilirse 32×2'lik yarım-blok bant geri gelir ([önizleme](docs/clawd-large.svg)). Büyük bant `$.ui.blit` ile oynuyor, yani her karede bandın geri kalanı yeniden çizilmiyor.
 - **clear-reminder** artık usage-meter gibi bir durum satırı.
@@ -130,7 +141,15 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 | Mod | Ne yapar |
 | --- | --- |
 | [`clawd-spinner`](clawd-spinner) | Spinner'ın altında 16×1'lik minik bir bant (blok octant karakterleri; fontun bunları çizmiyorsa `/config`'ten `size` ayarını `large` yap, 32×2 yarım-blok bant gelir): piksel Clawd her komutta rastgele seçilen 17 sahneden birini oynar (UFO, yemek, balık tutma, yağmur, müzik, laptop, roket, büyüyen çiçek, düşen bloklar, uyku…). Arka plan saate göre değişir: sabah kahve, gece gökyüzü, cuma akşamı konfeti. |
+
+### Bildirimler
+
+| Mod | Ne yapar |
+| --- | --- |
+| [`ask-alert`](ask-alert) | Claude seni beklediğinde (`ask` kuralından gelen izin isteği, `AskUserQuestion`, boşta kalan prompt, MCP'nin bilgi isteği) Windows bildirimi ve terminal içi toast gösterir, `Windows Notify System Generic.wav` çalar. `/plugin configure` içinde `mode`: `both` (varsayılan), `toast` veya `sound`. Sadece Windows. |
 | [`done-sound`](done-sound) | Claude cevabı bitirince ses çalar (Windows, PowerShell MediaPlayer ile). |
+
+![ask-alert: terminal toast'u ve Windows bildirimi](docs/ask-alert.svg)
 
 ## Kurulum
 
@@ -146,10 +165,11 @@ Marketplace'i eklemek için `y` de, sonra scope seç. Tablolardaki diğer mod ad
 
 ## Notlar
 
-- Function hook'lar Claude Code'un erken erişim API'si; sürümler arasında değişebilir. Bu mod'lar Claude Code 2.1.296 üzerinde yazılıp test edildi.
+- Function hook'lar Claude Code'un erken erişim API'si; sürümler arasında değişebilir. Bu mod'lar Claude Code 2.1.296 üzerinde yazılıp test edildi; `ask-alert` 2.1.300 üzerinde.
 - `session-journal`, prompt'larının ilk satırını diske düz metin olarak yazar. Prompt'a secret yapıştırıyorsan bunu göz önünde tut.
 - `/gunluk` her çalıştığında bir Haiku isteği yapar.
-- Yukarıdaki görseller mod'ların kendi çıktısından çizildi (Clawd kareleri `scene.ts`'den, durum satırı ve panel metinleri mod fonksiyonlarından); canlı oturumdan kırpılmadı.
+- `ask-alert`, `bypassPermissions` modunda izin uyarısı vermez, çünkü izin ekranı çıkmaz. Claude Code'u organizasyon yönetiyorsa `Notification` hook'u ancak organizasyon plugin'i listelerse çalışır; `AskUserQuestion` uyarısı yine çalışır.
+- Yukarıdaki görseller mod'ların kendi çıktısından çizildi (Clawd kareleri `scene.ts`'den, durum satırı ve panel metinleri mod fonksiyonlarından); canlı oturumdan kırpılmadı. `ask-alert.svg` içindeki Windows bildirimi gerçeğine benzetilerek çizildi.
 
 ## Geliştirme
 
