@@ -63,6 +63,11 @@
       "name": "sys-meter",
       "source": "./sys-meter",
       "description": "Status line with CPU load, RAM usage and CPU temperature, refreshed every 5 seconds (Windows)"
+    },
+    {
+      "name": "ask-alert",
+      "source": "./ask-alert",
+      "description": "Windows toast and sound when Claude waits for you: permission prompt, AskUserQuestion or idle prompt"
     }
   ]
 }

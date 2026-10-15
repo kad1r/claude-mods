@@ -1,0 +1,14 @@
+{
+  "name": "ask-alert",
+  "version": "0.1.0",
+  "description": "Windows toast and sound when Claude waits for you: a permission prompt, AskUserQuestion, or an idle prompt",
+  "userConfig": {
+    "mode": {
+      "type": "string",
+      "title": "Alert mode",
+      "description": "both: Windows toast + sound. toast: toast only. sound: sound only.",
+      "default": "both",
+      "options": ["both", "toast", "sound"]
+    }
+  }
+}
