@@ -53,7 +53,7 @@ Small, focused mods for [Claude Code](https://claude.com/claude-code), built on 
 | Mod | What it does |
 | --- | --- |
 | [`ask-alert`](ask-alert) | When Claude waits for you (a permission prompt from an `ask` rule, an `AskUserQuestion`, an idle prompt, an MCP input request) it raises a Windows notification, a toast in the terminal and plays `Windows Notify System Generic.wav`. `mode` in `/plugin configure`: `both` (default), `toast` or `sound`. Windows only. |
-| [`done-sound`](done-sound) | Plays a sound when Claude finishes answering (Windows, through PowerShell's MediaPlayer). |
+| [`done-sound`](done-sound) | Plays a random mp3 from its `sounds/` folder when Claude finishes answering, never the same twice in a row (Windows, through PowerShell's MediaPlayer). |
 
 ![ask-alert: terminal toast and Windows notification](docs/ask-alert.svg)
 
@@ -67,7 +67,7 @@ At a Claude Code prompt:
 
 Answer `y` to add the marketplace, then pick a scope. Repeat with any mod name from the tables above. `/reload-plugins` picks up updates.
 
-**done-sound:** the sound file is not in the repo. Put any mp3 at `done-sound/sounds/done.mp3` inside the installed plugin folder.
+**done-sound:** no sound files are in the repo. Put one or more mp3s in `done-sound/sounds/` inside the installed plugin folder; each finished answer plays a random one, never the same twice in a row.
 
 ## Notes
 
@@ -147,7 +147,7 @@ To run from a local clone, add it as a marketplace (`claude plugin marketplace a
 | Mod | Ne yapar |
 | --- | --- |
 | [`ask-alert`](ask-alert) | Claude seni beklediğinde (`ask` kuralından gelen izin isteği, `AskUserQuestion`, boşta kalan prompt, MCP'nin bilgi isteği) Windows bildirimi ve terminal içi toast gösterir, `Windows Notify System Generic.wav` çalar. `/plugin configure` içinde `mode`: `both` (varsayılan), `toast` veya `sound`. Sadece Windows. |
-| [`done-sound`](done-sound) | Claude cevabı bitirince ses çalar (Windows, PowerShell MediaPlayer ile). |
+| [`done-sound`](done-sound) | Claude cevabı bitirince `sounds/` klasöründen rastgele bir mp3 çalar, aynısı art arda gelmez (Windows, PowerShell MediaPlayer ile). |
 
 ![ask-alert: terminal toast'u ve Windows bildirimi](docs/ask-alert.svg)
 
@@ -161,7 +161,7 @@ Claude Code prompt'unda:
 
 Marketplace'i eklemek için `y` de, sonra scope seç. Tablolardaki diğer mod adlarıyla tekrarla. Güncellemeler için `/reload-plugins`.
 
-**done-sound:** Ses dosyası repoda yok. Kurulan plugin klasöründe `done-sound/sounds/done.mp3` yoluna istediğin bir mp3 koy.
+**done-sound:** Ses dosyaları repoda yok. Kurulan plugin klasöründe `done-sound/sounds/` altına bir veya daha fazla mp3 koy; her cevap bitiminde rastgele biri çalar, aynısı art arda gelmez.
 
 ## Notlar
 
